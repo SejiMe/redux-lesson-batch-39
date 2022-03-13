@@ -18,7 +18,7 @@ export const login = (params) => {
 export const logout = (params) => {
   return async (dispatch) => {
     dispatch({
-      type: types.LOGIN,
+      type: types.LOGOUT,
     });
   };
 };
