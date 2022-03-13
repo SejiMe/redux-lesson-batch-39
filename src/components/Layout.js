@@ -21,9 +21,9 @@ function Layout({ children }) {
             | <Link to="/login">Login</Link>
           </>
         ) : (
-          <a href="/login" onClick={onLogout}>
+          <Link to="/login" onClick={onLogout}>
             Logout
-          </a>
+          </Link>
         )}
       </div>
       {children}
