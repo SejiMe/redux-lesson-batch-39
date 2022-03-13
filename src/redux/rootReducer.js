@@ -1,8 +1,7 @@
-import { createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { combineReducers } from "redux";
 
-import rootReducer from "./rootReducer";
+import auth from "./auth";
 
-const store = createStore(rootReducer, composeWithDevTools());
+const rootReducer = combineReducers({ auth });
 
-export default store;
+export default rootReducer;
