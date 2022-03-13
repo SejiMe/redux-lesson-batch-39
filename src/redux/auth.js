@@ -7,6 +7,8 @@ const types = {
   LOGOUT: "logout",
 };
 
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN:
