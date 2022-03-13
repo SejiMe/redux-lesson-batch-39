@@ -1,12 +1,21 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "./../redux/auth";
 
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const onSubmit = (evt) => {
     evt.preventDefault();
+    setLoading(true);
+    dispatch(login({ email, password }));
+    setLoading(false);
+    navigate("/");
   };
 
   return (
@@ -21,22 +30,28 @@ function Login() {
                 <div className="mb-2">
                   <label>Email</label>
                   <input
+                    disabled={isLoading}
                     className="form-control"
                     type="email"
-                    value={email}
+                    defaultValue={email}
+                    required
                     onChange={(evt) => setEmail(evt.target.value)}
                   />
                 </div>
                 <div className="mb-3">
                   <label>Password</label>
                   <input
+                    disabled={isLoading}
                     className="form-control"
                     type="password"
-                    value={password}
+                    defaultValue={password}
+                    required
                     onChange={(evt) => setPassword(evt.target.value)}
                   />
                 </div>
-                <button className="btn w-100 btn-primary">Submit</button>
+                <button className="btn w-100 btn-primary" disabled={isLoading}>
+                  Submit
+                </button>
               </form>
             </div>
           </div>

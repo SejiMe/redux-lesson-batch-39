@@ -1,10 +1,30 @@
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "./../redux/auth";
+import { useNavigate } from "react-router-dom";
 
 function Layout({ children }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const onLogout = (evt) => {
+    evt.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
   return (
     <div>
       <div>
-        <Link to="/">Home</Link> | <Link to="/login">Login</Link>
+        <Link to="/">Home</Link>{" "}
+        {!isLoggedIn ? (
+          <>
+            | <Link to="/login">Login</Link>
+          </>
+        ) : (
+          <a href="/login" onClick={onLogout}>
+            Logout
+          </a>
+        )}
       </div>
       {children}
       <div>Footer</div>

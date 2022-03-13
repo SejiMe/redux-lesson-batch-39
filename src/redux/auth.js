@@ -8,15 +8,15 @@ const types = {
 };
 
 export const login = (params) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({
       type: types.LOGIN,
     });
   };
 };
 
-export const logout = (params) => {
-  return async (dispatch) => {
+export const logout = () => {
+  return (dispatch) => {
     dispatch({
       type: types.LOGOUT,
     });
